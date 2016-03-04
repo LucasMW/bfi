@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 #define DEFAULT_SIZE 100 // less than 1 MB
-
+#define DEBUG 1
 
 // based on  http://groups.csail.mit.edu/graphics/classes/6.837/F04/cpp_notes/stack1.html
 #define STACK_MAX 100
@@ -77,15 +77,15 @@ void execute(char* program)
 	char* memory = (char*) malloc(DEFAULT_SIZE); // memory of program
 	ptr = memory;
 	Stack_Init(loopStack);
-	printf("executing\n");
-	printf("%s\n",program);
-	printf("c: %c\n",*program);
+	//printf("executing\n");
+	//printf("%s\n",program);
+	//printf("c: %c\n",*program);
 	
 	while(*program)
 	{
-		printf("while\t");
+		//printf("while\t");
 		c = *program;
-		printf("%x %c ptr: %x {%d}\n",program,c,ptr,*ptr);
+		//printf("%x %c ptr: %x {%d}\n",program,c,ptr,*ptr);
 		if (c == instructions[0]) 
 		{
 			++ptr;
@@ -115,16 +115,16 @@ void execute(char* program)
 				// will enter while
 			if(*ptr)
 			{
-				printf("entered [ ");
+				//printf("entered [ ");
 				loopStart = program;
-				printf("loopStart: %x \n", loopStart);
+				//printf("loopStart: %x \n", loopStart);
 				Stack_Push(loopStack,loopStart);
 			}
 
 			else
 			{
 					// skip while sequence
-				printf("must skip [ \n");
+				//printf("must skip [ \n");
 				program++;
 				internalLoopCount = 0;
 				while(!(*program == ']' && internalLoopCount == 0)) // while not match stop requirements
@@ -138,8 +138,8 @@ void execute(char* program)
 						internalLoopCount--;
 					}
 					program++;
-					printf("%c %d\n", *program, internalLoopCount);
-					sleep(1);
+					//printf("%c %d\n", *program, internalLoopCount);
+					//sleep(1);
 				}
 			}
 
@@ -149,13 +149,13 @@ void execute(char* program)
 				// repeats loop
 			if(*ptr)
 			{
-				printf("shall repeat\n");
+				//printf("shall repeat\n");
 				loopStart = Stack_Top(loopStack);
 				program = loopStart; 
 			}
 			else
 			{
-				printf("end of loop\n");
+				//printf("end of loop\n");
 				Stack_Pop(loopStack); // out of this loop
 			}
 		}
@@ -185,17 +185,17 @@ char * readFile(char* path)
 	fseek(input, 0, SEEK_END);
 	size = ftell(input);
 	rewind(input);
-	printf("opened\n");
+	//printf("opened\n");
 	fileString = (char*)malloc(size+1);
 	i = 0;
 	while(fscanf(input,"%c",&c) != EOF)
 	{
-		printf("%c",c);
+		//printf("%c",c);
 		fileString[i] = c;
 		i++;
 	}
 	fileString[size] = NULL;
-	printf("will close\n");
+	//printf("will close\n");
 	fclose(input); 
 	return fileString;
 }
@@ -206,7 +206,7 @@ int main (int argc, char** argv)
 	//expects bfi filepath
 	if(argc == 2)
 	{
-		printf("will read\n");
+		//printf("will read\n");
 		program = readFile(argv[1]);
 		execute(program);
 		free(program);

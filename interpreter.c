@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define DEFAULT_SIZE 100 // less than 1 MB
+#define DEFAULT_SIZE 100000000 // less than 1 MB
 #define DEBUG 1
 
 // based on  http://groups.csail.mit.edu/graphics/classes/6.837/F04/cpp_notes/stack1.html
@@ -165,7 +165,7 @@ void execute(char* program)
 		}
 		program++;
 	}
-	printMemory(memory,'d');
+	//printMemory(memory,'d');
 	free(memory);
 }
 
@@ -194,7 +194,7 @@ char * readFile(char* path)
 		fileString[i] = c;
 		i++;
 	}
-	fileString[size] = NULL;
+	fileString[size] = '\0';
 	//printf("will close\n");
 	fclose(input); 
 	return fileString;

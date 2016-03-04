@@ -9,7 +9,7 @@
 #define DEBUG 1
 
 // based on  http://groups.csail.mit.edu/graphics/classes/6.837/F04/cpp_notes/stack1.html
-#define STACK_MAX 100
+#define STACK_MAX 10000
 struct Stack 
 {
     char*     data[STACK_MAX];

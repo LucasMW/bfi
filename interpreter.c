@@ -5,15 +5,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define DEFAULT_SIZE 100000000 // less than 1 MB
+#define DEFAULT_SIZE 100000000 // less than 10 MB
 #define DEBUG 1
 
 // based on  http://groups.csail.mit.edu/graphics/classes/6.837/F04/cpp_notes/stack1.html
 #define STACK_MAX 10000
 struct Stack 
 {
-    char*     data[STACK_MAX];
-    int     size;
+    char * data[STACK_MAX];
+    int size;
 };
 typedef struct Stack Stack;
 

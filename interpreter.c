@@ -5,52 +5,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include "stack.h"
 #define DEFAULT_SIZE 100000000 // less than 100 MB
 #define DEBUG 1
 
 // based on  http://groups.csail.mit.edu/graphics/classes/6.837/F04/cpp_notes/stack1.html
-#define STACK_MAX 10000
-struct Stack 
-{
-    char * data[STACK_MAX];
-    int size;
-};
-typedef struct Stack Stack;
 
-
-void Stack_Init(Stack *S)
-{
-    S->size = 0;
-}
-
-char* Stack_Top(Stack *S)
-{
-    if (S->size == 0) 
-    {
-        fprintf(stderr, "Error: stack empty\n");
-        return NULL;
-    } 
-
-    return S->data[S->size-1];
-}
-
-void Stack_Push(Stack *S, char* d)
-{
-    if (S->size < STACK_MAX)
-        S->data[S->size++] = d;
-    else
-        fprintf(stderr, "Error: stack full\n");
-}
-
-void Stack_Pop(Stack *S)
-{
-    if (S->size == 0)
-        fprintf(stderr, "Error: stack empty\n");
-    else
-    {
-        S->size--;
-    }
-}
 void printMemory(char *memory,char mode)
 {
 	int i;
@@ -65,6 +26,40 @@ void printMemory(char *memory,char mode)
 			printf("%d ",memory[i]);
 	}
 	printf("]\n");
+}
+void printAreaNearPtr(char* ptr,char* memory,int offset)
+{
+
+	int x = ptr - memory;
+	int i;
+	if(x > 0 && x < offset)
+	{
+		for( i = 0; i < 2* offset; i++)
+		{
+			printf("|%d",*(ptr+i));
+			if(i==0)
+				printf("*");
+		}
+	}
+	else if (x < 0 && x*x < offset*offset)
+	{
+		for( i = -2 * offset; i < 0; i++)
+		{
+			printf("|%d",*(ptr+i));
+			if(i==0)
+				printf("*");
+		}
+	}
+	else
+	{
+		for( i = -offset; i < offset; i++   )
+		{
+			printf("|%d",*(ptr+i));
+			if(i==0)
+				printf("*");
+		}
+	}
+	printf("|\r");
 }
 void execute(char* program)
 {
@@ -164,6 +159,11 @@ void execute(char* program)
 
 		}
 		program++;
+		// if((int)program % 1 == 0)
+		// {
+		// 	usleep(10);
+		// 	printAreaNearPtr(ptr,memory,5);
+		// }
 	}
 	//printMemory(memory,'d');
 	free(memory);

@@ -8,9 +8,13 @@
 
 #include "stack.h"
 #define DEFAULT_SIZE 100000000 // less than 100 MB
-#define DEBUG 1
+//#define DEBUG
 
-// based on  http://groups.csail.mit.edu/graphics/classes/6.837/F04/cpp_notes/stack1.html
+#ifdef DEBUG
+# define DEBUG_PRINT(x) printf x
+#else
+# define DEBUG_PRINT(x) do {} while (0)
+#endif
 
 void printMemory(char *memory,char mode)
 {
@@ -61,6 +65,7 @@ void printAreaNearPtr(char* ptr,char* memory,int offset)
 	}
 	printf("|\r");
 }
+
 void execute(char* program)
 {
 	Stack* loopStack;
@@ -80,7 +85,7 @@ void execute(char* program)
 	{
 		//printf("while\t");
 		c = *program;
-		//printf("%x %c ptr: %x {%d}\n",program,c,ptr,*ptr);
+		DEBUG_PRINT(("%x %c ptr: %x {%d} \n",program,c,ptr,*ptr));
 		if (c == instructions[0]) 
 		{
 			++ptr;

@@ -1,12 +1,13 @@
 #define STACK_MAX 10000
 #include "stack.h"
+
+// based on  http://groups.csail.mit.edu/graphics/classes/6.837/F04/cpp_notes/stack1.html
+
 struct Stack 
 {
     char * data[STACK_MAX];
     int size;
 };
-
-
 
 void Stack_Init(Stack *S)
 {

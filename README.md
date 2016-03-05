@@ -18,10 +18,10 @@ Pull requests are welcome
 
   * Interpreter has fixed ammount of memory to use for .bf prograns. 
   *Although it can be changed in compile time.*
-  * Interprter has a fixed limit for nested loops. 
+  * Interpreter has a fixed limit for nested loops. 
   *It can also be changed in compile time.*
   * This is 8 bit cell implementation. 
-  *Bf prograns which need 16 (or more) bits per cell are unsuported.* 
+  *Bf prograns which need 16 (or more) bits cells are unsuported.* 
 
 
 

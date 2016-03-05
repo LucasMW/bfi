@@ -74,7 +74,7 @@ void execute(char* program)
 	char c; 
 	char *loopStart = NULL;
 	int internalLoopCount = 0;
-	char* memory = (char*) malloc(DEFAULT_SIZE); // memory of program
+	char* memory = (char*) calloc(sizeof(char),DEFAULT_SIZE); // memory of program must be zeroed.
 	ptr = memory;
 	Stack_Init(loopStack);
 	
@@ -112,15 +112,13 @@ void execute(char* program)
 				// will enter while
 			if(*ptr)
 			{
-				//printf("entered [ ");
 				loopStart = program;
 				Stack_Push(loopStack,loopStart);
 			}
 
 			else
 			{
-					// skip while sequence
-				//printf("must skip [ \n");
+				// skip while sequence
 				program++;
 				internalLoopCount = 0;
 				while(!(*program == ']' && internalLoopCount == 0)) // while not match stop requirements
@@ -134,14 +132,13 @@ void execute(char* program)
 						internalLoopCount--;
 					}
 					program++;
-					//printf("%c %d\n", *program, internalLoopCount);
 				}
 			}
 
 		}
 		else if (c ==instructions[7])
 		{
-				// repeats loop
+			// repeats loop
 			if(*ptr)
 			{
 				loopStart = Stack_Top(loopStack);

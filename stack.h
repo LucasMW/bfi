@@ -2,7 +2,7 @@
 #include <stdlib.h>
 typedef struct Stack Stack;
 
-void Stack_Init(Stack *S);
+void Stack_Init(Stack **S);
 
 char* Stack_Top(Stack *S);
 

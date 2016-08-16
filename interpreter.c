@@ -71,18 +71,20 @@ void execute(char* program)
 	Stack* loopStack;
 	char instructions[] = {'>','<','+','-','.',',','[',']'};
 	char* ptr; 
-	char c; 
+	char c,*cp; 
+	int i;
 	char *loopStart = NULL;
 	int internalLoopCount = 0;
 	char* memory = (char*) calloc(sizeof(char),DEFAULT_SIZE); // memory of program must be zeroed.
 	ptr = memory;
-	Stack_Init(loopStack);
+	Stack_Init(&loopStack);
 	
 	
 	while(*program)
 	{
 		c = *program;
-		DEBUG_PRINT(("%x %c ptr: %x {%d} \n",program,c,ptr,*ptr));
+		//DEBUG_PRINT(("%x\t%c\tptr:\t%x\t{%d}\n",program,c,ptr,*ptr));
+		//DEBUG_PRINT(("current instruction \'%c\'\t%d\n",c,c));
 		if (c == instructions[0]) 
 		{
 			++ptr;
@@ -182,7 +184,8 @@ char * readFile(char* path)
 		i++;
 	}
 	fileString[size] = '\0';
-	fclose(input); 
+	fclose(input);
+	DEBUG_PRINT(("%s\n",fileString)); 
 	return fileString;
 }
 int main (int argc, char** argv)

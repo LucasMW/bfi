@@ -5,13 +5,16 @@
 
 struct Stack 
 {
-    char * data[STACK_MAX];
+    char* data[STACK_MAX];
     int size;
 };
 
-void Stack_Init(Stack *S)
+void Stack_Init(Stack **S)
 {
-    S->size = 0;
+    *S = calloc(sizeof(Stack*),1);
+    //(*S)->data = calloc(sizeof(char*),STACK_MAX);
+    (*S)->size = 0;
+
 }
 
 char* Stack_Top(Stack *S)
@@ -22,13 +25,13 @@ char* Stack_Top(Stack *S)
         return NULL;
     } 
 
-    return S->data[S->size-1];
+    return (char*)S->data[S->size-1];
 }
 
 void Stack_Push(Stack *S, char* d)
 {
     if (S->size < STACK_MAX)
-        S->data[S->size++] = d;
+        S->data[(S->size)++] = d;
     else
         fprintf(stderr, "Error: stack full\n");
 }

@@ -83,7 +83,7 @@ void execute(char* program)
 	while(*program)
 	{
 		c = *program;
-		//DEBUG_PRINT(("%x\t%c\tptr:\t%x\t{%d}\n",program,c,ptr,*ptr));
+		DEBUG_PRINT(("%x\t%c\tptr:\t%x\t{%d}\n",program,c,ptr,*ptr));
 		//DEBUG_PRINT(("current instruction \'%c\'\t%d\n",c,c));
 		if (c == instructions[0]) 
 		{

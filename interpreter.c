@@ -71,8 +71,7 @@ void execute(char* program)
 	Stack* loopStack;
 	char instructions[] = {'>','<','+','-','.',',','[',']'};
 	char* ptr; 
-	char c,*cp; 
-	int i;
+	char c; 
 	char *loopStart = NULL;
 	int internalLoopCount = 0;
 	char* memory = (char*) calloc(sizeof(char),DEFAULT_SIZE); // memory of program must be zeroed.
@@ -158,6 +157,7 @@ void execute(char* program)
 		program++;
 	}
 	free(memory);
+	free(loopStack);
 }
 
 int errorMessage(int argc, char** argv)

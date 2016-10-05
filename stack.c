@@ -3,17 +3,17 @@
 
 // based on  http://groups.csail.mit.edu/graphics/classes/6.837/F04/cpp_notes/stack1.html
 
-struct Stack 
+typedef struct Stack 
 {
     char* data[STACK_MAX];
     int size;
-};
+} Stack;
 
 void Stack_Init(Stack **S)
 {
-    *S = calloc(sizeof(Stack*),1);
+    *S = calloc(sizeof(Stack),1); //allocating a Stack
     //(*S)->data = calloc(sizeof(char*),STACK_MAX);
-    (*S)->size = 0;
+    (*S)->size = 0; 
 
 }
 
@@ -25,7 +25,7 @@ char* Stack_Top(Stack *S)
         return NULL;
     } 
 
-    return (char*)S->data[S->size-1];
+    return S->data[S->size-1];
 }
 
 void Stack_Push(Stack *S, char* d)

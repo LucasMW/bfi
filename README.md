@@ -14,7 +14,7 @@ This was implemented for hobby purposes. THIS SOFTWARE HAS ABSOLUTELY NO WARRANT
 
 Pull requests are welcome
 
-###Known Limitations:
+### Known Limitations:
 
   * Interpreter has fixed ammount of memory to use for .bf prograns. 
   *Although it can be changed in compile time.*
